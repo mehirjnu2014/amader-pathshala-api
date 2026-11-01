@@ -108,6 +108,9 @@ app.post('/api/chat', async (req, res) => {
 
 // Firebase Cloud Function এক্সপোর্ট
 export const api = onRequest({ cors: true }, app);
+app.get('/', (req, res) => {
+  res.send('আমাদের পাঠশালা সার্ভার চালু আছে!');
+});
 // Render সার্ভারে চালু রাখার জন্য লিসেনার
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
