@@ -12062,5 +12062,25 @@ var cm=window.closeModal;window.closeModal=function(){stopAll();return cm.apply(
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
+<!-- Supabase CDN Client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  const SUPABASE_URL = 'https://vbaptigeztqevktflcfd.supabase.co';
+ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZiYXB0aWdlenRXZXZrdGZsa2NmZCIsInJvbGUiOiJhbm9uIiwiaWF0IjE3MzkzOTM1NTExODcslmV4cCI6MjA1NDk2OTU1MX0.abMFZQsRUr5rs1dG_DdsXPEDQjmkVltitZ6lTOjWJjU';
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  window.saveStudentScore = async function(name, score) {
+    const { data, error } = await supabase
+      .from('student_scores')
+      .insert([{ student_name: name, points: score }]);
+
+    if (error) {
+      console.error('স্কোর সেভ করতে সমস্যা:', error.message);
+    } else {
+      console.log('স্কোর সফলভাবে ডেটাবেজে জমা হয়েছে!');
+    }
+  };
+</script>    
 </body>
 </html>
